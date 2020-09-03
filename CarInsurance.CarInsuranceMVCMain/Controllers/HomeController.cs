@@ -14,9 +14,9 @@ namespace CarInsurance.CarInsuranceMVCMain.Controllers
     {
 
         private readonly ILogger<HomeController> _logger;
-        private readonly DatabaseContext _dbContext;
+        private readonly CarDatabaseContext _dbContext;
 
-        public HomeController(ILogger<HomeController> logger, DatabaseContext dbContext)
+        public HomeController(ILogger<HomeController> logger, CarDatabaseContext dbContext)
         {
             _dbContext = dbContext;
             _logger = logger;
@@ -24,8 +24,8 @@ namespace CarInsurance.CarInsuranceMVCMain.Controllers
 
         public IActionResult Index(int id = 1)
         {
-            var broker = _dbContext.Broker.FirstOrDefault(b => b.Id.Equals(id));
-            return View(broker);
+         
+            return View();
         }
 
         public IActionResult Privacy()

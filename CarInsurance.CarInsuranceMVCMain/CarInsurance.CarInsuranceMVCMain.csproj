@@ -6,11 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\css\loginStyle.css" />
-    <Content Remove="wwwroot\js\loginMain.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="bootstrap" Version="4.5.2" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
@@ -34,16 +29,6 @@
 
   <ItemGroup>
     <Folder Include="Areas\Broker\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\css\loginStyle.css" />
-    <None Include="wwwroot\images\Login\avatar.svg" />
-    <None Include="wwwroot\images\Login\bg.svg" />
-    <None Include="wwwroot\images\Login\wave.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="wwwroot\js\loginMain.js" />
   </ItemGroup>
 
   <ItemGroup>

@@ -8,7 +8,6 @@ namespace CarInsurance.DataAccess.ModelsPOCOs
     [NotMapped]
     public class PolicyTemplate
     {
-        [NotMapped]
         public List<AbstractCover> ListOfCovers = new List<AbstractCover>();
     }
 

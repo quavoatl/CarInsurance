@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using CarInsurance.DatabaseDemo.DbModels;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CarInsurance.DatabaseDemo
 {
-    public class DemoDbContext : DbContext
+    public class DemoDbContext : IdentityDbContext
     {
         public DbSet<Broker> Broker { get; set; }
         public DbSet<BrokerDetails> BrokerDetails { get; set; }
@@ -18,8 +19,6 @@ namespace CarInsurance.DatabaseDemo
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BrokerDetails>().HasKey(details => details.BrokerId);
-            modelBuilder.Entity<PolicyTemplate>().HasNoKey();
             modelBuilder.Entity<CoverTheft>().HasKey(cover => cover.CoverId);
             
         }
