@@ -12,6 +12,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using CarInsurance.DataAccess.Models;
 
 namespace CarInsurance.CarInsuranceMVCMain
 {
@@ -31,8 +32,13 @@ namespace CarInsurance.CarInsuranceMVCMain
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<IdentityUser,IdentityRole>()
+            services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<CarDatabaseContext>();
+
+            services.Configure<IdentityOptions>(options =>
+            {
+                options.Password.RequiredLength = 10;
+            });
 
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();

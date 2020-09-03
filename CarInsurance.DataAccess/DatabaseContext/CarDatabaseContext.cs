@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace CarInsurance.DataAccess.DatabaseContext
 {
-    public class CarDatabaseContext : IdentityDbContext
+    public class CarDatabaseContext : IdentityDbContext<AppUser>
     {
        
         public CarDatabaseContext(DbContextOptions options) : base(options)
