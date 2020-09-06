@@ -18,7 +18,7 @@ namespace CarInsurance.MainApp.Controllers
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly CarDatabaseContext _dbContext;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,RoleManager<IdentityRole> roleManager,CarDatabaseContext context)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, CarDatabaseContext context)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
@@ -33,6 +33,7 @@ namespace CarInsurance.MainApp.Controllers
         }
 
         [HttpPost]
+        [Route("/Account/Logout")]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
@@ -47,7 +48,8 @@ namespace CarInsurance.MainApp.Controllers
                 var user = new AppUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, IsBroker = model.IsBroker };
                 var result = await _userManager.CreateAsync(user, model.Password);
 
-                var roleResult = await _userManager.AddToRoleAsync(user, "Broker");
+                if (user.IsBroker) await _userManager.AddToRoleAsync(user, "Broker");
+                else await _userManager.AddToRoleAsync(user, "Customer");
 
                 if (result.Succeeded)
                 {
@@ -55,10 +57,9 @@ namespace CarInsurance.MainApp.Controllers
 
                     if (user.IsBroker) return RedirectToAction("Index", "Home", new { area = "Broker" });
                     else return RedirectToAction("Index", "Home", new { area = "Customer" });
-
                 }
 
-                foreach(var error in result.Errors)
+                foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
@@ -72,7 +73,7 @@ namespace CarInsurance.MainApp.Controllers
             if (ModelState.IsValid)
             {
                 bool userIsBroker = false;
-                var result = await _signInManager.PasswordSignInAsync(model.Email,model.Password,model.RememberMe,false);
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, false);
 
                 userIsBroker = _dbContext.Users.Where(user => user.Email.Equals(model.Email))
                     .Select(user => user.IsBroker)
@@ -80,7 +81,7 @@ namespace CarInsurance.MainApp.Controllers
 
                 if (result.Succeeded)
                 {
-                    if(userIsBroker) return RedirectToAction("index", "home", new { area = "Broker" });
+                    if (userIsBroker) return RedirectToAction("index", "home", new { area = "Broker" });
                     else return RedirectToAction("index", "home", new { area = "Customer" });
                 }
 
