@@ -25,7 +25,6 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "Broker")]
         public IActionResult ManagePolicyTemplate()
         {
             return View();

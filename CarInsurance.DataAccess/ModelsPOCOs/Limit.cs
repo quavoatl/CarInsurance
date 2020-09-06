@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace CarInsurance.DataAccess.ModelsPOCOs
+namespace CarInsurance.DataAccess.InfrastructureObjects.Interfaces
 {
     public class Limit
     {
-        public Limit(string name, List<int> limitValues)
-        {
-            this.Name = name;
-            this.LimitValues = limitValues;
-        }
-
+        [Required]
+        [MinLength(5)]
+        [Display(Name = "Please enter a name for your limit, EX: SuperLimit")]
         public string Name { get; set; }
-        public List<int> LimitValues { get; set; }
+        [Required]
+
+        public int LimitValue { get; set; }
+        public ICollection<int> LimitValues { get; set; }
     }
 }

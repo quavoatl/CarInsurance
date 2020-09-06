@@ -46,6 +46,7 @@ namespace CarInsurance.MainApp
                 options.AccessDeniedPath = new PathString("/Account/AccessBlocked");
             });
 
+            services.AddSession();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddRazorPages();
         }
@@ -71,6 +72,7 @@ namespace CarInsurance.MainApp
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
 
             app.UseEndpoints(endpoints =>
             {

@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
-namespace CarInsurance.DataAccess.ModelsPOCOs
+namespace CarInsurance.DataAccess.InfrastructureObjects.Interfaces
 {
     public class Question
     {
-        public Question(string name, List<string> qValues)
-        {
-            this.Name = name;
-            this.QuestionValues = qValues;
-        }
-        public string Name { get; set; }
-        public List<string> QuestionValues { get; set; }
+        [Required]
+        public virtual string Name { get; set; }
+        [Required]
+        public virtual string Text { get; set; }
     }
 }
