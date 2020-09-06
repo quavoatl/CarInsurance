@@ -22,9 +22,10 @@
     <link href="~/css/site.css" rel="stylesheet" />
     <title>@ViewBag.Title</title>
 </head>
+
 <body>
 
-    <div class="container">
+    <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-success navbar-dark">
             <a class="navbar-brand">
                 <i class="fas fa-car-crash"></i>
@@ -38,6 +39,13 @@
                         <a class="nav-link" asp-controller="home" asp-action="index">| Registered Brokers |</a>
                     </li>
                 </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-area="broker" asp-controller="home" asp-action="managepolicytemplate"> Manage Policy Template |</a>
+                    </li>
+                </ul>
+
                 <ul class="navbar-nav ml-auto">
                     @if (signInManager.IsSignedIn(User))
                     {
@@ -74,24 +82,30 @@
         }
     </div>
 
-    <footer>
-        <div class="container">
-            <nav class="navbar navbar-expand-lg bg-success navbar-dark">
-                <a class="navbar-brand">
-                    <i class="fas fa-car-crash"></i>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="home" asp-action="index">| Registered Brokers |</a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </footer>
+
+    <div class="footer">
+        <footer>
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg bg-success navbar-dark">
+                    <a class="navbar-brand">
+                        <i class="fas fa-car-crash"></i>
+                    </a>
+
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="home" asp-action="index">| Registered Brokers |</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </footer>
+    </div>
+
+
 </body>
+
+
+
 </html>

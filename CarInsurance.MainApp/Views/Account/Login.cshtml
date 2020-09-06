@@ -1,0 +1,41 @@
+﻿@model CarInsurance.DataAccess.AccountController.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "User Login";
+}
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6 offset-3">
+       
+        <h1><i class="fas fa-users"></i>  User Login</h1>
+        <form method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <i class="fas fa-envelope"></i>
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-unlock"></i>
+                <label asp-for="Password"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="RememberMe">
+                        <input asp-for="RememberMe" />
+                        @Html.DisplayNameFor(m => m.RememberMe);
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Login</button>
+            <a class="" asp-controller="account" asp-action="register">Don't have an account?</a>
+        </form>
+    </div>
+</div>
+<hr />

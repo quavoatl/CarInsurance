@@ -1,0 +1,104 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UserSecretsId>aspnet-CarInsurance.MainApp-B1BA3C8D-1EED-41B0-B611-2855FB1237FA</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.css" Link="wwwroot\css\bootstrap-grid.css">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.css.map" Link="wwwroot\css\bootstrap-grid.css.map">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css" Link="wwwroot\css\bootstrap-grid.min.css">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap-grid.min.css.map" Link="wwwroot\css\bootstrap-grid.min.css.map">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css" Link="wwwroot\css\bootstrap-reboot.css">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.css.map" Link="wwwroot\css\bootstrap-reboot.css.map">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css" Link="wwwroot\css\bootstrap-reboot.min.css">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap-reboot.min.css.map" Link="wwwroot\css\bootstrap-reboot.min.css.map">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap.css" Link="wwwroot\css\bootstrap.css">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap.css.map" Link="wwwroot\css\bootstrap.css.map">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap.min.css" Link="wwwroot\css\bootstrap.min.css">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+    <Content Include="..\..\..\..\.nuget\packages\bootstrap\4.5.2\contentFiles\any\any\wwwroot\css\bootstrap.min.css.map" Link="wwwroot\css\bootstrap.min.css.map">
+      <Private>False</Private>
+      <NuGetPackageVersion>4.5.2</NuGetPackageVersion>
+      <NuGetItemType>Content</NuGetItemType>
+      <NuGetPackageId>bootstrap</NuGetPackageId>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.7" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.7" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.7" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CarInsurance.DataAccess\CarInsurance.DataAccess.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="wwwroot\css\site.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>
