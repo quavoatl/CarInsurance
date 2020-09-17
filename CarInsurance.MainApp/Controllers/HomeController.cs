@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using CarInsurance.DataAccessV3.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using CarInsurance.DataAccess.Models;
 
 namespace CarInsurance.MainApp.Controllers
 {

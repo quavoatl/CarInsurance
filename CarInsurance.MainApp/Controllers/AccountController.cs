@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CarInsurance.DataAccess.AccountController.ViewModels;
-using CarInsurance.DataAccess.DatabaseContext;
-using CarInsurance.DataAccess.Models;
+using CarInsurance.DataAccessV3.CarInsuranceDbContext;
+using CarInsurance.DataAccessV3.DbModels;
+using CarInsurance.DataAccessV3.ViewModels.AccountController;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,9 +17,9 @@ namespace CarInsurance.MainApp.Controllers
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
-        private readonly CarDatabaseContext _dbContext;
+        private readonly CarInsuranceContextV3 _dbContext;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, CarDatabaseContext context)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, CarInsuranceContextV3 context)
         {
             this._userManager = userManager;
             this._signInManager = signInManager;
@@ -45,7 +46,14 @@ namespace CarInsurance.MainApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new AppUser { UserName = model.Email, Email = model.Email, PhoneNumber = model.PhoneNumber, IsBroker = model.IsBroker };
+                var user = new AppUser {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    PhoneNumber = model.PhoneNumber,
+                    IsBroker = model.IsBroker,
+                    Address = model.Address
+                };
+
                 var result = await _userManager.CreateAsync(user, model.Password);
 
                 if (user.IsBroker) await _userManager.AddToRoleAsync(user, "Broker");

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CarInsurance.ConstantsAndHelpers\CarInsurance.ConstantsAndHelpers.csproj" />
+    <ProjectReference Include="..\CarInsurance.DataAccessV3\CarInsurance.DataAccessV3.csproj" />
+  </ItemGroup>
+
+</Project>

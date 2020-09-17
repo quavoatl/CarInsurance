@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using CarInsurance.DataAccess.DatabaseContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
@@ -12,8 +11,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using CarInsurance.DataAccess.Models;
 using Microsoft.AspNetCore.Http;
+using CarInsurance.DataAccessV3.CarInsuranceDbContext;
+using CarInsurance.DataAccessV3.DbModels;
+using CarInsurance.DataAccessV3.Repository.IRepository;
+using CarInsurance.DataAccessV3.Repository;
+using CarInsurance.DBServices.DbAddServices.BrokerDetailsService;
 
 namespace CarInsurance.MainApp
 {
@@ -29,12 +32,16 @@ namespace CarInsurance.MainApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<CarDatabaseContext>(options =>
+            services.AddDbContext<CarInsuranceContextV3>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddIdentity<AppUser, IdentityRole>()
-                .AddEntityFrameworkStores<CarDatabaseContext>();
+                .AddEntityFrameworkStores<CarInsuranceContextV3>();
+
+            //services.AddScoped<IUnitOfWork, UnitOfWork>();
+
+            services.Add(new ServiceDescriptor(typeof(IBrokerService), typeof(BrokerService), ServiceLifetime.Scoped));
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -45,6 +52,7 @@ namespace CarInsurance.MainApp
             {
                 options.AccessDeniedPath = new PathString("/Account/AccessBlocked");
             });
+
 
             services.AddSession();
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
@@ -57,7 +65,7 @@ namespace CarInsurance.MainApp
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
+                //app.UseDatabaseErrorPage();
             }
             else
             {
