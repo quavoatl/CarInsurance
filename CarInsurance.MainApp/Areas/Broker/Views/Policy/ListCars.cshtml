@@ -6,85 +6,70 @@
 
 <hr />
 
-<div class="row justify-content-center">
 
-    @*use service in controller to pass ICollection as model (maybe create from this a partial view) to retrieve the list of values for cars from db*@
 
-    <h2>List of cars</h2>
+<h3>List of cars</h3>
 
-    <br />
+<br />
 
-    <form action="" method="post" role="form">
 
-        <table id="myTable" class="table-striped table-bordered">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FirstOrDefault().Brand)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FirstOrDefault().Model)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FirstOrDefault().EngineCC)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FirstOrDefault().Year)
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
+<div class="container">
+    <div class="col-lg-12">
 
-                @foreach (var item in Model)
-                {
+        <form asp-controller="policycontroller" method="get">
+
+            <table class="table">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Brand)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Model)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EngineCC)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Year)
-                        </td>
-                        <td>
-                            <a class="btn btn-outline-success" asp-area="broker" asp-controller="policy" asp-action="editcar" asp-route-id="@item.CarId">Edit this Car</a>
-                            <a class="btn btn-outline-success" asp-area="broker" asp-controller="policy" asp-action="deletecar">Delete this Car</a>
-                        </td>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.FirstOrDefault().Brand)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.FirstOrDefault().Model)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.FirstOrDefault().EngineCC)
+                        </th>
+                        <th scope="col">
+                            @Html.DisplayNameFor(model => model.FirstOrDefault().Year)
+                        </th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
 
-    </form>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
 
+                        <tr>
+                            <td scope="row">
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().Brand)
+                            </td>
 
+                            <td scope="row">
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().Model)
+                            </td>
 
+                            <td scope="row">
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().EngineCC)
+                            </td>
 
-    @*<div class="col-md-6">
-        <div class="form-group">
-            <ul class="list-group">
+                            <td scope="row">
+                                @Html.DisplayNameFor(model => model.FirstOrDefault().Year)
+                            </td>
 
-                @foreach (var car in Model)
-                {
+                            <td scope="row">
+                                <a class="btn btn-outline-success" asp-area="broker" asp-controller="policy"
+                                   asp-action="editcar" asp-route-carid="@item.CarId">Edit this Car</a>
+                            </td>
 
-                    int i = 0;
-                    string idName = car.Brand + car.Model + $"_{i}";
-                    string carDisplay = car.Brand + " / " + car.Model + " / Car year: " + car.Year.ToShortDateString();
+                        </tr>
+                    }
+                </tbody>
+            </table>
 
-                    <li class="list-group-item list-group-item-success" id="@idName">@carDisplay</li>
+        </form>
 
-
-
-                }
-
-            </ul>
-        </div>
-    </div>*@
+    </div>
 
 </div>
 

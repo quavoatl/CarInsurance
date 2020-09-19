@@ -186,13 +186,13 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
             carFromDb.Model = carModel.Model;
             _dbContext.SaveChanges();
 
-            return View(carModel);
+           return RedirectToAction("listcars", "policy", new { area = "Broker" });
         }
 
         [HttpGet]
-        public IActionResult EditCar(int id)
+        public IActionResult EditCar(int carid)
         {
-            var car = _dbContext.Car.Find(id);
+            var car = _dbContext.Car.Find(carid);
            
             return View(car);
         }

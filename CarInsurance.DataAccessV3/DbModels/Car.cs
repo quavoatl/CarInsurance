@@ -13,7 +13,7 @@ namespace CarInsurance.DataAccessV3.DbModels
 
         public int CarId { get; set; }
         public Guid CarBrokerRefId { get; set; }
-        [Display(Name = "Car Brand", Description = "Volkswagen, Toyota, Skoda...")]
+        [Display(Description = "Volkswagen, Toyota, Skoda...")]
         public string Brand { get; set; }
         public string Model { get; set; }
         public DateTime Year { get; set; }
