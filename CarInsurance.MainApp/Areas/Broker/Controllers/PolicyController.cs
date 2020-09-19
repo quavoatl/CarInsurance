@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CarInsurance.ConstantsAndHelpers.CustomModelValidations;
 using CarInsurance.DataAccessV3.CarInsuranceDbContext;
 using CarInsurance.DataAccessV3.DbModels;
 using CarInsurance.DataAccessV3.Repository;
@@ -38,7 +39,7 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
         [HttpPost]
         public IActionResult Create(LimitAndQuestionViewModel model)
         {
-           
+
 
             //if (ModelState.IsValid)
             //{
@@ -63,14 +64,14 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
             //return RedirectToAction("index", "home", new { area = "Customer" });
             return View(model);
         }
-          
+
         [HttpGet]
         public IActionResult Create()
         {
             AppUser _loggedUser = userManager.GetUserAsync(User).Result;
             var hasTemplate = _brokerService.CheckBrokerHasPolicyTemplate(_loggedUser);
 
-            if(!hasTemplate) _brokerService.CreateBrokerPolicyTemplate(_loggedUser);
+            if (!hasTemplate) _brokerService.CreateBrokerPolicyTemplate(_loggedUser);
 
             if (_brokerService.GetCars(_loggedUser).Count == 0)
             {
@@ -181,19 +182,34 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
         [HttpPost]
         public IActionResult EditCar(Car carModel)
         {
-            var carFromDb = _dbContext.Car.Find(carModel.CarId);
-            carFromDb.Brand = carModel.Brand;
-            carFromDb.Model = carModel.Model;
-            _dbContext.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                var brandModelMatching = new CarModelValidation();
 
-           return RedirectToAction("listcars", "policy", new { area = "Broker" });
+                if (brandModelMatching.AllowedModelsOnBrand[carModel.Brand.ToLower()].Contains(carModel.Model.ToLower()))
+                {
+                    var carFromDb = _dbContext.Car.Find(carModel.CarId);
+                    carFromDb.Brand = carModel.Brand;
+                    carFromDb.Model = carModel.Model;
+                    _dbContext.SaveChanges();
+
+                    return RedirectToAction("listcars", "policy", new { area = "Broker" });
+                }
+                else
+                {
+                    ViewBag.BrandModelMatchingError = $"There is no match between {carModel.Brand} and {carModel.Model} !!!";
+                    return View(carModel); // the brand/model combination does not exist
+                }
+
+            }
+            else return View(carModel); // some validation error occured, return model to the view to render the errors
         }
 
         [HttpGet]
         public IActionResult EditCar(int carid)
         {
             var car = _dbContext.Car.Find(carid);
-           
+
             return View(car);
         }
     }
