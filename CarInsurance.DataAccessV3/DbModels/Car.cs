@@ -22,8 +22,10 @@ namespace CarInsurance.DataAccessV3.DbModels
 
         public DateTime Year { get; set; }
 
+        [CarEngineCCValidation]
         public int EngineCC { get; set; }
 
+        [CarEuroStandardValidation]
         public string EuroStandard { get; set; }
 
         public Guid CarRuleCoverId { get; set; } //FK //should be set when creating a car.

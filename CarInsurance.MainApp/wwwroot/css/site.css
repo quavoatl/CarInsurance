@@ -67,7 +67,6 @@ body {
   line-height: 60px;  Vertically center the text there 
 }
 
-
 .container-fluid {
     width: 80% !important;
 }
@@ -77,4 +76,36 @@ body {
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 50px;
+    /* equal to footer height */
+}
+
+header {
+    background: #ccc;
+}
+
+/*footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 70px;
+    width: 100%;
+}*/
+
+body, .sticky-footer-wrapper {
+    min-height: 100vh;
+}
+
+.flex-fill {
+    flex: 1 1 auto;
 }

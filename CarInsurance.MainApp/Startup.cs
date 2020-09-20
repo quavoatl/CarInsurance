@@ -39,9 +39,8 @@ namespace CarInsurance.MainApp
             services.AddIdentity<AppUser, IdentityRole>()
                 .AddEntityFrameworkStores<CarInsuranceContextV3>();
 
-            //services.AddScoped<IUnitOfWork, UnitOfWork>();
-
-            services.Add(new ServiceDescriptor(typeof(IBrokerService), typeof(BrokerService), ServiceLifetime.Scoped));
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IBrokerService, BrokerService>();
 
             services.Configure<IdentityOptions>(options =>
             {

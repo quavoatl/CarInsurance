@@ -8,67 +8,13 @@
 
 
 
-<h3>List of cars</h3>
+
 
 <br />
 
-
 <div class="container">
     <div class="col-lg-12">
-
-        <form asp-controller="policycontroller" method="get">
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">
-                            @Html.DisplayNameFor(model => model.FirstOrDefault().Brand)
-                        </th>
-                        <th scope="col">
-                            @Html.DisplayNameFor(model => model.FirstOrDefault().Model)
-                        </th>
-                        <th scope="col">
-                            @Html.DisplayNameFor(model => model.FirstOrDefault().EngineCC)
-                        </th>
-                        <th scope="col">
-                            @Html.DisplayNameFor(model => model.FirstOrDefault().Year)
-                        </th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-
-                        <tr>
-                            <td scope="row">
-                                @Html.DisplayFor(modelItem => item.Brand)
-                            </td>
-
-                            <td scope="row">
-                                @Html.DisplayFor(modelItem => item.Model)
-                            </td>
-
-                            <td scope="row">
-                                @Html.DisplayFor(modelItem => item.EngineCC)
-                            </td>
-
-                            <td scope="row">
-                                @Html.DisplayFor(modelItem => item.Year)
-                            </td>
-
-                            <td scope="row">
-                                <a class="btn btn-outline-success" asp-area="broker" asp-controller="policy"
-                                   asp-action="editcar" asp-route-carid="@item.CarId">Edit this Car</a>
-                            </td>
-
-                        </tr>
-                    }
-                </tbody>
-            </table>
-
-        </form>
-
+        <partial name="_ListOfCars" model="@Model" />
     </div>
 
 </div>

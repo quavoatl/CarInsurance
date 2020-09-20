@@ -1,4 +1,5 @@
 ﻿using CarInsurance.DataAccessV3.CarInsuranceDbContext;
+using CarInsurance.DataAccessV3.Repository.DbModelsRepositories;
 using CarInsurance.DataAccessV3.Repository.IRepository;
 using System;
 using System.Collections.Generic;
@@ -13,9 +14,12 @@ namespace CarInsurance.DataAccessV3.Repository
         public UnitOfWork(CarInsuranceContextV3 db) 
         {
             _dbContext = db;
+            BrokerPolicyTemplateRepository = new BrokerPolicyTemplateRepository(db);
+            CarRepository = new CarRepository(db);
         }
 
         public IBrokerPolicyTemplateRepository BrokerPolicyTemplateRepository { get; private set; }
+        public ICarRepository CarRepository { get; private set; }
 
         public void Dispose()
         {

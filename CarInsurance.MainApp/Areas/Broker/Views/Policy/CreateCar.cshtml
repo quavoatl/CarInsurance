@@ -1,4 +1,6 @@
 ﻿@model CarInsurance.DataAccessV3.DbModels.Car
+@inject CarInsurance.DBServices.DbAddServices.BrokerDetailsService.IBrokerService brokerService
+
 @{
     ViewData["Title"] = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,8 +8,16 @@
 
 <hr />
 
+<h3>Currently adding a car to your list...</h3>
+
+
 <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-lg-6">
+
+        @if (ViewBag.BrandModelMatchingError != null)
+        {
+            <span class="text-danger">@ViewBag.BrandModelMatchingError</span>
+        }
 
         <form method="post" asp-area="broker" asp-controller="policy" asp-action="createcar">
 
@@ -16,13 +26,28 @@
             <div class="form-group">
                 <label asp-for="Brand"></label>
                 <input asp-for="Brand" class="form-control" />
-                <span asp-validation-for="Brand" class="text-danger"></span>
+                <label>@Constants.CarBrand</label>
             </div>
 
             <div class="form-group">
                 <label asp-for="Model"></label>
                 <input asp-for="Model" class="form-control" />
-                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Year"></label>
+                <input asp-for="Year" asp-format="{0:dd/MM/yyyy}" class="form-control" />
+                <label>@Constants.CarYearFormat</label>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EngineCC"></label>
+                <input asp-for="EngineCC" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="EuroStandard"></label>
+                <input asp-for="EuroStandard" class="form-control" />
             </div>
 
             <button type="submit" class="btn btn-primary">Create this Car</button>
@@ -30,25 +55,11 @@
         </form>
     </div>
 
+    <div class="col-lg-6">
+        <partial name="_ListOfCars" model="@brokerService.GetCars(userManager.GetUserAsync(User).Result)" />
+    </div>
+
     <br />
 
-    @*use service to retrieve the list of values for cars from db*@
-    @*<div class="col-md-6">
-            <div class="form-group">
-                <ul class="list-group">
-                    @if (Model.Limit.LimitValues != null)
-                    {
-                        @for (int i = 0; i < Model.Limit.LimitValues.Count; i++)
-                        {
-                            string idName = Model.Limit.Name + $"_{i}";
-                            <li class="list-group-item" id="@idName">@Model.Limit.LimitValues.ElementAt(i)</li>
-                        }
-                    }
-
-                </ul>
-            </div>
-
-        </div>*@
-
-
 </div>
+

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CarInsurance.DataAccessV3.DbModels;
+using CarInsurance.DBServices.DbAddServices.BrokerDetailsService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -16,18 +17,22 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
         private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IBrokerService _brokerService;
 
-        public HomeController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public HomeController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager, IBrokerService brokerService)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this._brokerService = brokerService;
         }
 
         [HttpGet]
         public IActionResult ManagePolicyTemplate()
         {
-            return View();
+            AppUser _loggedUser = userManager.GetUserAsync(User).Result;
+            var brokerTemplate = _brokerService.RetrieveBrokerPolicyTemplate(_loggedUser);
+            return View(brokerTemplate);
         }
 
         [HttpGet]

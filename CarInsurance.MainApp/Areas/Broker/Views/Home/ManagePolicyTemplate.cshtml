@@ -1,4 +1,5 @@
-﻿
+﻿@model BrokerPolicyTemplate
+
 @{
     ViewData["Title"] = "View";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,24 +7,40 @@
 
 <hr />
 
-<div class="row">
-    <div class="col-lg-5 offset-1">
-        <div class="card text-white bg-info">
-            <div class="card-header">Here you can find your policy templates</div>
+<div class="row justify-content-center">
+
+    <div class="col-lg-3">
+        <div class="card border-primary mb-3" style="max-width: 18rem;">
+            <div class="card-header">Policy Template Status:</div>
             <div class="card-body">
-                <p class="card-text">You currently have : 0 policies</p>
+                <p> Is your template ready ?</p>
+                @if (Model.TemplateReady)
+                {
+                    <span class="text-success">@Model.TemplateReady</span>
+                    <p>Great! Your policy template is visible to customers</p>
+
+                }
+                else
+                {
+                    <label class="text-danger text-xl-center">@Model.TemplateReady</label>
+                    <p>This means that your policy is not yet visible to customers</p>
+                }
             </div>
         </div>
-
     </div>
 
+    <div class="col-lg-7">
+        <div class="card border-primary mb-7">
+            <div class="card-header">Create/Edit your policy template</div>
 
-    <div class="col-lg-5">
-        <div class="card text-white bg-info">
-            <div class="card-header">Here you can create/edit your policy template</div>
             <div class="card-body">
-                <a class="btn btn-primary" asp-area="Broker" asp-controller="Policy" asp-action="Create">Create</a>
-                <a class="btn btn-primary" asp-area="Broker" asp-controller="Policy" asp-action="Edit">Edit</a>
+                <p>1. Create = Once clicked you will be redirected to the remaining features you need to add to your policy template.</p>
+                <p>2. Edit = Here you can edit your list of cars, covers, limits and other stuff.</p>
+            </div>
+
+            <div class="card-footer">
+                <a class="btn btn-primary" asp-area="broker" asp-controller="policy" asp-action="create">Create</a>
+                <a class="btn btn-primary" asp-area="broker" asp-controller="policy" asp-action="edit">Edit</a>
             </div>
         </div>
     </div>
