@@ -1,8 +1,8 @@
 ﻿@model ICollection<Car>
 
-    <h3>List of your supported cars</h3>
+<h3>List of your supported cars</h3>
 
-<form asp-controller="policycontroller" method="get">
+<form asp-controller="car" method="get">
 
     <table class="table">
         <thead>
@@ -44,8 +44,8 @@
                     </td>
 
                     <td scope="row">
-                        <a class="btn btn-outline-success" asp-area="broker" asp-controller="policy"
-                           asp-action="editcar" asp-route-carid="@item.CarId">Edit this Car</a>
+                        <a class="btn btn-outline-success" asp-area="broker" asp-controller="car"
+                           asp-action="edit" asp-route-carid="@item.CarId">Edit this Car</a>
                     </td>
 
                 </tr>

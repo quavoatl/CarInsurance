@@ -1,0 +1,30 @@
+﻿@model CarInsurance.DataAccessV3.DbModels.Car
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+
+<div class="container">
+    <h3>List of all actions</h3>
+
+    <div class="row justify-content-lg-start">
+
+        <div class="col-md-4">
+
+            <div class="list-group">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a class="btn btn-outline-success" asp-area="broker" asp-controller="car" asp-action="list">Edit your list of Cars</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a class="btn btn-outline-success" asp-area="broker" asp-controller="car" asp-action="create">Add more Cars</a>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+</div>

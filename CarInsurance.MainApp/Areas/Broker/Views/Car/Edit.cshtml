@@ -1,0 +1,63 @@
+﻿@model CarInsurance.DataAccessV3.DbModels.Car
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+
+
+
+
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+
+            <h3>Currently editing your car template...</h3>
+            @if (ViewBag.BrandModelMatchingError != null)
+            {
+                <span class="text-danger">@ViewBag.BrandModelMatchingError</span>
+            }
+
+            <form method="post" asp-area="broker" asp-controller="car" asp-action="edit">
+                <input type="hidden" name="carid" value="@Model.CarId" />
+
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Brand"></label>
+                    <input asp-for="Brand" class="form-control" />
+                    <label>@Constants.CarBrand</label>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Model"></label>
+                    <input asp-for="Model" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Year"></label>
+                    <input asp-for="Year" asp-format="{0:dd/MM/yyyy}" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EngineCC"></label>
+                    <input asp-for="EngineCC" class="form-control" />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="EuroStandard"></label>
+                    <input asp-for="EuroStandard" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Edit this Car</button>
+
+            </form>
+
+        </div>
+
+        <br />
+
+    </div>
+</div>

@@ -63,8 +63,8 @@ namespace CarInsurance.MainApp.Controllers
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
-                    if (user.IsBroker) return RedirectToAction("Index", "Home", new { area = "Broker" });
-                    else return RedirectToAction("Index", "Home", new { area = "Customer" });
+                    if (user.IsBroker) return RedirectToAction("index", "home", new { area = "broker" });
+                    else return RedirectToAction("index", "home", new { area = "customer" });
                 }
 
                 foreach (var error in result.Errors)
@@ -89,8 +89,8 @@ namespace CarInsurance.MainApp.Controllers
 
                 if (result.Succeeded)
                 {
-                    if (userIsBroker) return RedirectToAction("index", "home", new { area = "Broker" });
-                    else return RedirectToAction("index", "home", new { area = "Customer" });
+                    if (userIsBroker) return RedirectToAction("index", "home", new { area = "broker" });
+                    else return RedirectToAction("index", "home", new { area = "customer" });
                 }
 
                 ModelState.AddModelError(string.Empty, "Invalid Login Attempt");

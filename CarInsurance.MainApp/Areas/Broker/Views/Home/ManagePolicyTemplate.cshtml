@@ -7,42 +7,47 @@
 
 <hr />
 
-<div class="row justify-content-center">
+<div class="container">
+    <h3>Broker Management Area</h3>
+    <br />
 
-    <div class="col-lg-3">
-        <div class="card border-primary mb-3" style="max-width: 18rem;">
-            <div class="card-header">Policy Template Status:</div>
-            <div class="card-body">
-                <p> Is your template ready ?</p>
-                @if (Model.TemplateReady)
-                {
-                    <span class="text-success">@Model.TemplateReady</span>
-                    <p>Great! Your policy template is visible to customers</p>
+    <div class="row justify-content-center">
 
-                }
-                else
-                {
-                    <label class="text-danger text-xl-center">@Model.TemplateReady</label>
-                    <p>This means that your policy is not yet visible to customers</p>
-                }
+        <div class="col-lg-4">
+            <div class="card border-success">
+                <div class="card-header">Policy Template Status:</div>
+                <div class="card-body">
+                    <p> Is your template ready ?</p>
+                    @if (Model.TemplateReady)
+                    {
+                        <span class="text-success">@Model.TemplateReady</span>
+                        <p>Great! Your policy template is visible to customers</p>
+
+                    }
+                    else
+                    {
+                        <label class="text-danger text-xl-center">@Model.TemplateReady</label>
+                        <p>This means that your policy is not yet visible to customers</p>
+                    }
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="col-lg-7">
-        <div class="card border-primary mb-7">
-            <div class="card-header">Create/Edit your policy template</div>
+        <div class="col-lg-8">
+            <div class="card border-success">
+                <div class="card-header">Create/Edit your policy template</div>
 
-            <div class="card-body">
-                <p>1. Create = Once clicked you will be redirected to the remaining features you need to add to your policy template.</p>
-                <p>2. Edit = Here you can edit your list of cars, covers, limits and other stuff.</p>
-            </div>
+                <div class="card-body">
+                    <p>1. Create = Once clicked you will be redirected to the remaining features you need to add to your policy template.</p>
+                    <p>2. Edit = Here you can edit your list of cars, covers, limits and other stuff.</p>
+                </div>
 
-            <div class="card-footer">
-                <a class="btn btn-primary" asp-area="broker" asp-controller="policy" asp-action="create">Create</a>
-                <a class="btn btn-primary" asp-area="broker" asp-controller="policy" asp-action="edit">Edit</a>
+                <div class="card-footer">
+                    <a class="btn btn-primary" asp-area="broker" asp-controller="policytemplate" asp-action="create">Create</a>
+                    <a class="btn btn-primary" asp-area="broker" asp-controller="policytemplate" asp-action="edit">Edit</a>
+                </div>
             </div>
         </div>
-    </div>
 
+    </div>
 </div>
