@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CarInsurance.DataAccessV3.DbModels;
+using CarInsurance.DataAccessV3.ViewModels.Broker;
 using CarInsurance.DBServices.DbAddServices.BrokerDetailsService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -33,6 +34,20 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
             AppUser _loggedUser = userManager.GetUserAsync(User).Result;
             var brokerTemplate = _brokerService.RetrieveBrokerPolicyTemplate(_loggedUser);
             return View(brokerTemplate);
+        }
+
+        [HttpGet]
+        public IActionResult AvailableCovers()
+        {
+            AppUser _loggedUser = userManager.GetUserAsync(User).Result;
+
+            var listOfCoversFromDB = _brokerService.GetCovers(_loggedUser);
+            var viewObject = new AvailableCoversViewModel()
+            {
+                ListOfCoversFromDb = listOfCoversFromDB
+            };
+           
+            return View(viewObject);
         }
 
         [HttpGet]

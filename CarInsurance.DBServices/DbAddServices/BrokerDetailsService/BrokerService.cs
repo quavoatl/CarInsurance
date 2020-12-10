@@ -77,7 +77,23 @@ namespace CarInsurance.DBServices.DbAddServices.BrokerDetailsService
 
         public ICollection<Cover> GetCovers(AppUser user)
         {
-            throw new NotImplementedException();
+            ICollection<Cover> listOfCovers = null;
+            bool brokerHasPolicyTemplate = CheckBrokerHasPolicyTemplate(user);
+
+            if (brokerHasPolicyTemplate)
+            {
+                try
+                {
+                    listOfCovers = _dbContext.Cover.Where(cover => cover.CoverBrokerRefId.Equals(Guid.Parse(user.Id.ToString()))).ToList();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.GetType());
+                }
+            }
+            else return new List<Cover>();
+
+            return listOfCovers;
         }
 
         public Cover GetSpecificCover(CoverType coverType, AppUser user)

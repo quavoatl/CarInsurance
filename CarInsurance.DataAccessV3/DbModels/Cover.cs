@@ -19,6 +19,7 @@ namespace CarInsurance.DataAccessV3.DbModels
         public Guid QuestionCoverId { get; set; } //acts as a foreign key to Question class
         public Guid LimitCoverId { get; set; } //acts as a foreign key to Limit class
 
+
         public ICollection<Limit> Limit { get; set; }
         public ICollection<Question> Question { get; set; }
         public BrokerPolicyTemplate BrokerPolicyTemplate { get; set; }

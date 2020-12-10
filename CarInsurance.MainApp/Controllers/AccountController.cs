@@ -56,11 +56,11 @@ namespace CarInsurance.MainApp.Controllers
 
                 var result = await _userManager.CreateAsync(user, model.Password);
 
-                if (user.IsBroker) await _userManager.AddToRoleAsync(user, "Broker");
-                else await _userManager.AddToRoleAsync(user, "Customer");
-
                 if (result.Succeeded)
                 {
+                    if (user.IsBroker) await _userManager.AddToRoleAsync(user, "Broker");
+                    else await _userManager.AddToRoleAsync(user, "Customer");
+
                     await _signInManager.SignInAsync(user, isPersistent: false);
 
                     if (user.IsBroker) return RedirectToAction("index", "home", new { area = "broker" });

@@ -6,6 +6,7 @@ using CarInsurance.ConstantsAndHelpers.CustomModelValidations;
 using CarInsurance.DataAccessV3.CarInsuranceDbContext;
 using CarInsurance.DataAccessV3.DbModels;
 using CarInsurance.DataAccessV3.Repository.IRepository;
+using CarInsurance.DataAccessV3.ViewModels.Broker;
 using CarInsurance.DBServices.DbAddServices.BrokerDetailsService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -36,7 +37,47 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
             this._unitOfWork = unitOfWork;
         }
 
+        [HttpGet]
+        public IActionResult Create()
+        {
+            //AppUser _loggedUser = userManager.GetUserAsync(User).Result;
+            //var listOfCovers = _brokerService.GetCovers(_loggedUser);
 
+            //if (listOfCovers.Count == 0)
+            //{
+            //    return View(new AvailableCoversViewModel());
+            //}
+            //else
+            //{
+
+            //}
+
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(string coverType)
+        {
+            AppUser _loggedUser = userManager.GetUserAsync(User).Result;
+            var brokerTemplate = _brokerService.RetrieveBrokerPolicyTemplate(_loggedUser);
+
+            var cover = new Cover()
+            {
+                AdditionDate = DateTime.Now,
+                CoverBrokerRefId = brokerTemplate.CoverBrokerRefId,
+                LimitCoverId = Guid.NewGuid(),
+                QuestionCoverId = Guid.NewGuid(),
+            };
+
+            switch (coverType)
+            {
+                case "Natural Hazard": cover.Type = "naturalhazard"; break;
+                case "Accidents": cover.Type = "accidents"; break;
+                case "Theft": cover.Type = "theft"; break;
+            }
+
+            return Ok();
+        }
 
     }
 }

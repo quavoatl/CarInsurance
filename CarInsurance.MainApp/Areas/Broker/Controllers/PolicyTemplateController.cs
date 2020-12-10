@@ -48,7 +48,7 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
             }
             else
             {
-                return RedirectToPage("createlimit", "limit", new { area = "broker" });
+                return RedirectToAction("create", "cover", new { area = "broker" });
             }
 
 
