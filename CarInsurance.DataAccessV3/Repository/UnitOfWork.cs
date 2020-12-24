@@ -16,10 +16,12 @@ namespace CarInsurance.DataAccessV3.Repository
             _dbContext = db;
             BrokerPolicyTemplateRepository = new BrokerPolicyTemplateRepository(db);
             CarRepository = new CarRepository(db);
+            CoverRepository = new CoverRepository(db);
         }
 
         public IBrokerPolicyTemplateRepository BrokerPolicyTemplateRepository { get; private set; }
         public ICarRepository CarRepository { get; private set; }
+        public ICoverRepository CoverRepository { get; private set; }
 
         public void Dispose()
         {

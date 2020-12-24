@@ -1,0 +1,129 @@
+﻿@model CarInsurance.DataAccessV3.DbModels.Cover
+@inject CarInsurance.DBServices.DbAddServices.BrokerDetailsService.IBrokerService brokerService
+@using Microsoft.CSharp.RuntimeBinder
+
+
+
+@{
+    ViewData["Title"] = "View";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<hr />
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h3>Currently creating your cover...</h3>
+
+            @*@if (ViewBag.BrandModelMatchingError != null)
+                {
+                    <span class="text-danger">@ViewBag.BrandModelMatchingError</span>
+                }*@
+
+            <form method="post" asp-area="broker" asp-controller="cover" asp-action="create">
+                <div asp-validation-summary="All" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="Type"></label>
+                    <input asp-for="Type" class="form-control" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="AdditionDate"></label>
+                    <input asp-for="AdditionDate" class="form-control" readonly />
+                </div>
+
+                @*Hidden*@
+                <input asp-for="CoverBrokerRefId" class="form-control" type="hidden" />
+                <input asp-for="LimitCoverId" class="form-control" type="hidden" />
+                <input asp-for="QuestionCoverId" class="form-control" type="hidden" />
+
+
+                <button id="loadLimitQuestionPartialButton" type="submit" class="btn btn-primary">Create Cover</button>
+            </form>
+
+            @*<button id="loadLimitQuestionPartialButton2" type="submit" class="btn btn-primary" hidden>cacat Cover</button>*@
+            <div id="loadLimitQuestionPartial"></div>
+
+            @{
+                try
+                {
+                    if ((bool)ViewBag.CreationDone)
+                    {
+                        <div id="toast" class="toast" data-animation="true" data-autohide="false" role="alert" aria-live="assertive"
+                             aria-atomic="true" style="position: fixed; top: 100px; right: 10px;">
+                            <div class="toast-header">
+                                <strong class="mr-auto">Success !</strong>
+                                <small>11 mins ago</small>
+                                <button type="submit" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                                    <span id="loadLimitQuestionPartialButton2" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="toast-body">
+                               You created your cover, time to add some Limits/Questions, close the message to continue 
+                            </div>
+                        </div>
+                    }
+                }
+                catch (RuntimeBinderException ex) { }
+                catch (Exception ex2) { }
+            }
+
+
+            @*2 REGIONS ONE FOR LIMIT / ONE FOR QUESTION 2 BUTTONS SOMETHING LIKE :
+                - YOU DONT HAVE A LIMIT ADDED TO THIS COVER - CLICK HERE BLA BLA/ IF LIMIT IS PRESENT GREEN AND SUCCES MESSAGE
+                - YOU DONT HAVE A QUESTION ADDED TO THIS COVER - CLICK HERE BLA BLA/ IF QUESTION IS PRESENT GREEN AND SUCCES MESSAGE*@
+        </div>
+
+        <br />
+
+    </div>
+</div>
+
+
+@section Scripts
+{
+    <script>
+
+        let toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        let toastList = toastElList.map(function (toastEl) {
+
+            return new bootstrap.Toast(toastEl)
+        })
+
+        toastList[0].show()
+
+
+        $(document).ready(function () {
+
+            $("#loadLimitQuestionPartialButton2").click(function () {
+                $("#loadLimitQuestionPartial").load("/broker/cover/getlimitquestionpartial");
+            });
+
+        });
+    </script>
+
+    @*<script>
+
+            $("#loadLimitQuestionPartialButton2").on('click',function () {
+                $.ajax({
+                    url: '/broker/cover/getlimitquestionpartial',
+                    type: 'GET',
+                    cache: false,
+                    async: true,
+                    dataType: "html",
+                    data: @Model
+                })
+                    .done(function (result) {
+                        $('#loadLimitQuestionPartial').html(result);
+                    }).fail(function (xhr) {
+                        console.log('error : ' + xhr.status + ' - ' + xhr.statusText + ' - ' + xhr.responseText);
+                    });
+                })
+
+
+        </script>*@
+
+
+}

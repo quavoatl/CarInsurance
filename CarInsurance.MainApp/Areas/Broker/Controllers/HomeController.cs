@@ -46,7 +46,7 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
             {
                 ListOfCoversFromDb = listOfCoversFromDB
             };
-           
+
             return View(viewObject);
         }
 

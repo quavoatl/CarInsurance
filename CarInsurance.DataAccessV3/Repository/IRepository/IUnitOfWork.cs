@@ -8,6 +8,7 @@ namespace CarInsurance.DataAccessV3.Repository.IRepository
     {
         IBrokerPolicyTemplateRepository BrokerPolicyTemplateRepository { get; }
         ICarRepository CarRepository { get; }
+        ICoverRepository CoverRepository { get; }
         int Save();
     }
 }

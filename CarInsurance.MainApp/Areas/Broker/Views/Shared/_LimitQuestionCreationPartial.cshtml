@@ -1,0 +1,15 @@
+﻿@model Cover
+
+<h3>Cover @Model.Type: Limits & Questions</h3>
+
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <form method="get" asp-area="broker" asp-controller="cover" asp-action="getlimitquestionpartial">
+                <a class="btn btn-outline-primary" asp-area="broker" asp-controller="cover" asp-action="limit" asp-route-coverType="@Model.Type">Add Limit</a>
+                <a class="btn btn-outline-primary" asp-area="broker" asp-controller="cover" asp-action="question" asp-route-coverType="@Model.Type">Add Question</a>
+            </form>
+        </div>
+    </div>
+</div>

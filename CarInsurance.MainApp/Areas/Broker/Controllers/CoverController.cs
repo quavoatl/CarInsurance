@@ -38,45 +38,93 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
         }
 
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(string coverType)
         {
-            //AppUser _loggedUser = userManager.GetUserAsync(User).Result;
-            //var listOfCovers = _brokerService.GetCovers(_loggedUser);
+            AppUser _loggedUser = userManager.GetUserAsync(User).Result;
+            var coverAlreadyCreated = false;
 
-            //if (listOfCovers.Count == 0)
-            //{
-            //    return View(new AvailableCoversViewModel());
-            //}
-            //else
-            //{
+            Cover coverRetrievedFromDb = null;
+            Cover coverToCreate = null;
 
-            //}
+            foreach (var coverFromDb in _brokerService.GetCovers(_loggedUser))
+            {
+                if (coverFromDb.Type.Equals(coverType))
+                {
+                    coverAlreadyCreated = true;
+                    coverToCreate = coverFromDb;
+                }
+            }
+
+            if (!coverAlreadyCreated)
+            {
+                coverToCreate = new Cover()
+                {
+                    CoverBrokerRefId = Guid.Parse(_loggedUser.Id),
+                    AdditionDate = DateTime.Now,
+                    Type = coverType,
+                    LimitCoverId = Guid.NewGuid(),
+                    QuestionCoverId = Guid.NewGuid()
+                };
+
+                return View(coverToCreate);
+            }
+
+            else
+            {
+                return View(coverRetrievedFromDb);
+            }
+
+           
+        }
+
+        [HttpGet]
+        public IActionResult Edit()
+        {
+            // send to the view the model retrieved from the user cover
+            // ex: broker clicks on edit theft => load the page with info from the db with that cover
 
             return View();
         }
 
         [HttpPost]
-        public IActionResult Create(string coverType)
+        public IActionResult Create(Cover cover)
+        {
+            if (ModelState.IsValid)
+            {
+                // in the view add hidden fields so the model can be complete
+                AppUser _loggedUser = userManager.GetUserAsync(User).Result;
+
+                _unitOfWork.CoverRepository.Add(cover);
+               
+                int response = _unitOfWork.Save();
+                if(response == 1)
+                {
+                    ViewBag.SavedCover = cover.Type;
+                    ViewBag.CreationDone = true;
+                }
+
+                return View(cover);
+
+            }
+            else return View(cover); // some validation error occured, return model to the view to render the errors
+
+        }
+
+        [HttpGet]
+        public IActionResult GetLimitQuestionPartial()
         {
             AppUser _loggedUser = userManager.GetUserAsync(User).Result;
-            var brokerTemplate = _brokerService.RetrieveBrokerPolicyTemplate(_loggedUser);
+            Cover coverRetrievedFromDb = null;
 
-            var cover = new Cover()
+            foreach (var coverFromDb in _brokerService.GetCovers(_loggedUser))
             {
-                AdditionDate = DateTime.Now,
-                CoverBrokerRefId = brokerTemplate.CoverBrokerRefId,
-                LimitCoverId = Guid.NewGuid(),
-                QuestionCoverId = Guid.NewGuid(),
-            };
-
-            switch (coverType)
-            {
-                case "Natural Hazard": cover.Type = "naturalhazard"; break;
-                case "Accidents": cover.Type = "accidents"; break;
-                case "Theft": cover.Type = "theft"; break;
+                if (coverFromDb.Type.Equals("Natural Hazards")) //USE SESSION I GUESS 
+                {
+                    coverRetrievedFromDb = coverFromDb;
+                }
             }
 
-            return Ok();
+            return PartialView("_LimitQuestionCreationPartial", coverRetrievedFromDb);
         }
 
     }

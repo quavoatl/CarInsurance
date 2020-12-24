@@ -12,7 +12,7 @@
     <div class="row">
         @foreach (var coverType in Model.ListOfAdditionalCoverDetails)
         {
-            <form method="post" asp-area="broker" asp-controller="cover" asp-action="create">
+            <form method="get" asp-area="broker" asp-controller="cover" asp-action="create">
                 <div class="col-md-4">
                     <div class="card" style="width:350px">
                         <img class="card-img-top" src="@coverType.ImageURL" width="300" height="200">
@@ -22,30 +22,15 @@
 
                             @if (!Model.ListOfCoversFromDb.Count.Equals(0))
                             {
-                                @foreach (var cover in Model.ListOfCoversFromDb)
+                                if (Model.ListOfCoversFromDb.Any(c => c.Type.Equals(coverType.Name)))
                                 {
-                                    string temp = coverType.Name;
-                                    if (coverType.Name.Equals("Natural Hazards"))
-                                    {
-                                        temp = "naturalhazards";
-                                    }
-
-                                    if (cover.Type.Equals(temp, StringComparison.InvariantCultureIgnoreCase))
-                                    {
-                                        <a class="btn btn-outline-primary" asp-area="broker" asp-controller="cover" asp-action="edit" asp-route-coverType="@coverType.Name">Edit @coverType.Name cover</a>
-                                    }
-                                    else
-                                    {
-                                        <a class="btn btn-outline-success" asp-area="broker" asp-controller="cover" asp-action="create" asp-route-coverType="@coverType.Name">Create @coverType.Name cover</a>
-                                    }
+                                    <a class="btn btn-outline-primary" asp-area="broker" asp-controller="cover" asp-action="edit" asp-route-coverType="@coverType.Name">Edit @coverType.Name cover</a>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-outline-success" asp-area="broker" asp-controller="cover" asp-action="create" asp-route-coverType="@coverType.Name">Create @coverType.Name cover</a>
                                 }
                             }
-                            else
-                            {
-                                <a class="btn btn-outline-success" asp-area="broker" asp-controller="cover" asp-action="create" asp-route-coverType="@coverType.Name">Create @coverType.Name cover</a>
-                            }
-
-
                         </div>
                     </div>
                 </div>
