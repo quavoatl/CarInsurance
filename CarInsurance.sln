@@ -9,9 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarInsurance.Mocking", "Car
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarInsurance.DataAccessV3", "CarInsurance.DataAccessV3\CarInsurance.DataAccessV3.csproj", "{6441C45D-52FA-418B-987F-19D8431D98C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarInsurance.DBServices", "CarInsurance.DBServices\CarInsurance.DBServices.csproj", "{F4D31EED-B0CF-4B7E-98D0-68D095AEB75A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarInsurance.DBServices", "CarInsurance.DBServices\CarInsurance.DBServices.csproj", "{F4D31EED-B0CF-4B7E-98D0-68D095AEB75A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarInsurance.ConstantsAndHelpers", "CarInsurance.ConstantsAndHelpers\CarInsurance.ConstantsAndHelpers.csproj", "{8F8B1BDD-B1D1-464A-A3EB-57DD6DFAC54A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CarInsurance.ConstantsAndHelpers", "CarInsurance.ConstantsAndHelpers\CarInsurance.ConstantsAndHelpers.csproj", "{8F8B1BDD-B1D1-464A-A3EB-57DD6DFAC54A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarInsurance.Cover.API", "CarInsurance.Cover.API\CarInsurance.Cover.API.csproj", "{C4663D79-C079-4174-A476-EC2A54EA3D32}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarInsurance.DataAccessV2", "CarInurance.DataAccessV2\CarInsurance.DataAccessV2.csproj", "{8EEE3D13-774C-4235-8BE5-BA4D5738CEEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +43,14 @@ Global
 		{8F8B1BDD-B1D1-464A-A3EB-57DD6DFAC54A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F8B1BDD-B1D1-464A-A3EB-57DD6DFAC54A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F8B1BDD-B1D1-464A-A3EB-57DD6DFAC54A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4663D79-C079-4174-A476-EC2A54EA3D32}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4663D79-C079-4174-A476-EC2A54EA3D32}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4663D79-C079-4174-A476-EC2A54EA3D32}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4663D79-C079-4174-A476-EC2A54EA3D32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8EEE3D13-774C-4235-8BE5-BA4D5738CEEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8EEE3D13-774C-4235-8BE5-BA4D5738CEEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8EEE3D13-774C-4235-8BE5-BA4D5738CEEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8EEE3D13-774C-4235-8BE5-BA4D5738CEEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

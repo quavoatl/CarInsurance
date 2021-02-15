@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CarInsurance.DataAccessV3\CarInsurance.DataAccessV3.csproj" />
     <ProjectReference Include="..\CarInsurance.DBServices\CarInsurance.DBServices.csproj" />
+    <ProjectReference Include="..\CarInurance.DataAccessV2\CarInsurance.DataAccessV2.csproj" />
   </ItemGroup>
 
 </Project>

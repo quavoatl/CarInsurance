@@ -91,7 +91,6 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
         {
             if (ModelState.IsValid)
             {
-                // in the view add hidden fields so the model can be complete
                 AppUser _loggedUser = userManager.GetUserAsync(User).Result;
 
                 _unitOfWork.CoverRepository.Add(cover);
@@ -110,15 +109,15 @@ namespace CarInsurance.MainApp.Areas.Broker.Controllers
 
         }
 
-        [HttpGet]
-        public IActionResult GetLimitQuestionPartial()
+        [HttpPost]
+        public IActionResult GetLimitQuestionPartial([FromBody] string coverName)
         {
             AppUser _loggedUser = userManager.GetUserAsync(User).Result;
             Cover coverRetrievedFromDb = null;
 
             foreach (var coverFromDb in _brokerService.GetCovers(_loggedUser))
             {
-                if (coverFromDb.Type.Equals("Natural Hazards")) //USE SESSION I GUESS 
+                if (coverFromDb.Type.Equals(coverName)) //USE SESSION I GUESS 
                 {
                     coverRetrievedFromDb = coverFromDb;
                 }

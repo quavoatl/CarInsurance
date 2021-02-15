@@ -1,5 +1,4 @@
 using CarInsurance.DataAccessV3.CarInsuranceDbContext;
-using CarInsurance.DataAccessV3.DbModels;
 using CarInsurance.DBServices.DbAddServices.BrokerDetailsService;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +6,12 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CarInsurance.DataAccessV2.DbModels;
+using BrokerPolicyTemplate = CarInsurance.DataAccessV3.DbModels.BrokerPolicyTemplate;
+using Car = CarInsurance.DataAccessV3.DbModels.Car;
+using Cover = CarInsurance.DataAccessV3.DbModels.Cover;
+using Limit = CarInsurance.DataAccessV3.DbModels.Limit;
+using LimitRule = CarInsurance.DataAccessV3.DbModels.LimitRule;
 
 namespace CarInsurance.Mocking
 {
@@ -231,10 +236,27 @@ namespace CarInsurance.Mocking
         [Test]
         public void RetrieveCover()
         {
-            using (var _dbContext = new CarInsuranceContextV3())
+            using (var _dbContext = new CarInsuranceV3Context())
             {
-                var coverRetrieved = _dbContext.Cover.Where(c => c.CoverBrokerRefId.Equals(_testedBrokerGuid) && c.Type.Equals("naturalhazard"))
-                    .Include(c => c.Limit).ThenInclude(l => l.LimitRule).FirstOrDefault();
+                var coverRetrieved = _dbContext.Covers.Where(c =>
+                    c.CoverBrokerRefId.Equals(_testedBrokerGuid) && c.Type.Equals("Accidents")).FirstOrDefault();
+
+
+
+
+
+
+            }
+        }
+
+
+        [Test]
+        public void RetrieveCoverV2()
+        {
+            using (var _dbContext = new CarInsuranceV3Context())
+            {
+                var coverRetrieved = _dbContext.Covers.Where(c =>
+                    c.CoverBrokerRefId.Equals(_testedBrokerGuid) && c.Type.Equals("Accidents")).FirstOrDefault();
 
 
 

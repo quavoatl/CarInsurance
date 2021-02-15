@@ -61,13 +61,12 @@
                                 </button>
                             </div>
                             <div class="toast-body">
-                               You created your cover, time to add some Limits/Questions, close the message to continue 
+                                You created your cover, time to add some Limits/Questions, close the message to continue
                             </div>
                         </div>
                     }
                 }
                 catch (RuntimeBinderException ex) { }
-                catch (Exception ex2) { }
             }
 
 
@@ -93,16 +92,41 @@
         })
 
         toastList[0].show()
-
-
+        
         $(document).ready(function () {
 
             $("#loadLimitQuestionPartialButton2").click(function () {
-                $("#loadLimitQuestionPartial").load("/broker/cover/getlimitquestionpartial");
+                 console.log(@Model.Type);
+              $.ajax({
+                url: "/broker/cover/getlimitquestionpartial",
+                type: "POST",
+                data: { "coverType": @Model.Type },
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8'
+
+            }).done(function (r) {
+                $("#loadLimitQuestionPartial").html(r);
+            })
             });
 
         });
+
+        @*function loadPartialViewSendData() {
+            console.log(championship);
+            $.ajax({
+                url: "/broker/cover/getlimitquestionpartial",
+                type: "POST",
+                data: { "coverType": @Model.Type },
+                dataType: 'json',
+                contentType: 'application/json; charset=UTF-8',
+
+            }).done(function (r) {
+                $("#loadLimitQuestionPartial").html(r);
+            })
+        }*@
+
     </script>
+
 
     @*<script>
 
